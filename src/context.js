@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+//import update from 'immutability-helper';
 
 import {storeProducts, detailProduct} from "./data";
 
@@ -8,18 +9,38 @@ const ProductContext = React.createContext();
 //Consumer
 
 class ProductProvider extends Component {
-  state = {
-    products: storeProducts,
-    productDetail: detailProduct
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      products: [],
+      productDetail: detailProduct
+    }
   };
 
-  handleDetail = () => {
+  componentDidMount() {
+    this.setProducts();
+  };
+
+  setProducts() {
+    //deep copy the products array:
+    let products = [];
+    storeProducts.forEach(item => {
+      const singleItem = {...item};
+      products = [...products, singleItem];
+    });
+    this.setState({products})
+
+  }
+
+  handleDetail() {
     console.log("Hello from detail");
   };
 
-  addToCart = () => {
+  addToCart() {
     console.log("add to cart")
-  }
+  };
+
   render() {
     return (
       <ProductContext.Provider value={{
