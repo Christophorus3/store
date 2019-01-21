@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.button`
+export const StyledButton = styled.button`
 text-transform: capitalize;
 font-size: 1.4rem;
 background: transparent;
