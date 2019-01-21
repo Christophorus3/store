@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Navbar from "./Navbar";
 
 export default styled.button`
 text-transform: capitalize;
