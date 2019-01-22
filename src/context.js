@@ -15,14 +15,14 @@ class ProductProvider extends Component {
     this.state = {
       products: [],
       productDetail: detailProduct
-    }
+    };
   };
 
   componentDidMount() {
     this.setProducts();
   };
 
-  setProducts() {
+  setProducts = () => {
     //deep copy the products array:
     let products = [];
     storeProducts.forEach(item => {
@@ -33,11 +33,19 @@ class ProductProvider extends Component {
 
   }
 
-  handleDetail() {
-    console.log("Hello from detail");
+  getItem = (id) => {
+    const product = this.state.products.find(item => item.id === id);
+    return product;
   };
 
-  addToCart(id) {
+  handleDetail = (id) => {
+    const product = this.getItem(id);
+    this.setState({
+      productDetail: product
+    })
+  };
+
+  addToCart = (id) => {
     console.log("added to cart: ", id)
   };
 
