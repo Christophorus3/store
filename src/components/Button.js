@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const StyledButton = styled.button`
 text-transform: capitalize;
@@ -11,6 +11,11 @@ padding: 0.2rem 0.5rem;
 cursor: pointer;
 margin: 0.2rem 0.5rem 0.2rem 0;
 transition: all 0.5s ease-in-out;
+
+${props => props.cart && css`
+  border-color: var(--mainYellow);
+  color: var(--mainYellow);
+`}
 
 &:hover {
  background: var(--lightBlue);
