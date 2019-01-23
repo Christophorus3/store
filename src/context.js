@@ -14,7 +14,8 @@ class ProductProvider extends Component {
 
     this.state = {
       products: [],
-      productDetail: detailProduct
+      productDetail: {},
+      cart: []
     };
   };
 
@@ -31,7 +32,7 @@ class ProductProvider extends Component {
     });
     this.setState({products})
 
-  }
+  };
 
   getItem = (id) => {
     const product = this.state.products.find(item => item.id === id);
@@ -46,7 +47,17 @@ class ProductProvider extends Component {
   };
 
   addToCart = (id) => {
-    console.log("added to cart: ", id)
+    //????
+    let products = [...this.state.products];
+    const index = products.indexOf(this.getItem(id));
+    const product = products[index];
+    product.inCart = true;
+    product.count = 1;
+    product.total = product.price;
+    this.setState({
+      //products,
+      cart: [...this.state.cart, product]
+    });
   };
 
   render() {
