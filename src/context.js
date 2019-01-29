@@ -62,7 +62,21 @@ class ProductProvider extends Component {
     this.setState({
       //products,
       cart: [...this.state.cart, product]
-    });
+    }, () => this.calculateTotals());
+  };
+
+  removeFromCart = (id) => {
+    //find item in cart with id and remove it from aray.
+    console.log("remove item.")
+    let cart = this.state.cart;
+    let item = cart.find(item => item.id === id);
+    item.total = 0;
+    item.inCart = false;
+    console.log(cart);
+    cart = cart.filter(item => item.id !== id);
+    console.log(cart);
+    this.setState({ cart });
+    this.calculateTotals();
   };
 
   openModal = (id) => {
@@ -87,12 +101,27 @@ class ProductProvider extends Component {
     console.log("decrement")
   };
 
-  removeItem = (id) => {
-    console.log("remove item.")
+  clearCart = (id) => {
+    // this whole cart thing is flawed!
+    this.setState({
+      cart: []
+    }, () => {
+      //hack!! :D
+      this.setProducts();
+    })
   };
 
-  clearCart = (id) => {
-    console.log("cart cleared")
+  calculateTotals = () => {
+    let subtotal = 0;
+    this.state.cart.map(item => (subtotal += item.total * item.count));
+    const tempTax = subtotal * 0.2;
+    const tax = parseFloat(tempTax.toFixed(2));
+    const total = subtotal + tax;
+    this.setState({
+      cartSubTotal: subtotal,
+      cartTax: tax,
+      cartTotal: total
+    })
   };
 
   render() {
@@ -105,7 +134,7 @@ class ProductProvider extends Component {
         closeModal: this.closeModal,
         increment: this.increment,
         decrement: this.decrement,
-        removeItem: this.removeItem,
+        removeFromCart: this.removeFromCart,
         clearCart: this.clearCart
       }}>
         {this.props.children}

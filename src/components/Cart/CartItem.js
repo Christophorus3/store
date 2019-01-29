@@ -34,7 +34,7 @@ function CartItem(props) {
           </div>
         </div>
         <div className="col-10 mx-auto col-lg-2">
-          <div className="cart-icon" onClick={() => context.removeItem(item.id)}>
+          <div className="cart-icon" onClick={() => context.removeFromCart(item.id)}>
             <i className="fas fa-trash" />
           </div>
         </div>
