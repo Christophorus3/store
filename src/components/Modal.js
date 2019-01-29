@@ -22,12 +22,14 @@ class Modal extends Component {
                   <h5 className="text-muted">$ {price}</h5>
                   <Link to="/">
                     <StyledButton onClick={value.closeModal}>
-                      Continue Shopping
+                      Back to Store
                     </StyledButton>
                   </Link>
-                  <StyledButton cart>
+                  <Link to="/cart">
+                  <StyledButton cart onClick={value.closeModal}>
                     go to cart
                   </StyledButton>
+                  </Link>
                   </div>
               </div>
             </div>
