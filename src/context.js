@@ -75,8 +75,9 @@ class ProductProvider extends Component {
     console.log(cart);
     cart = cart.filter(item => item.id !== id);
     console.log(cart);
-    this.setState({ cart });
-    this.calculateTotals();
+    this.setState({
+      cart
+    }, () => this.calculateTotals());
   };
 
   openModal = (id) => {
