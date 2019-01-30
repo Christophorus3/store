@@ -95,11 +95,23 @@ class ProductProvider extends Component {
   };
 
   increment = (id) => {
-    console.log("increment method here.")
+    let cart = this.state.cart;
+    let selectedProduct = this.getItem(id);
+    selectedProduct.count += 1;
+    this.setState({
+      cart
+    }, () => this.calculateTotals());
   };
 
   decrement = (id) => {
-    console.log("decrement")
+    let cart = this.state.cart;
+    let selectedProduct = this.getItem(id);
+    if (selectedProduct.count > 1) {
+      selectedProduct.count -= 1;
+    }
+    this.setState({
+      cart
+    }, () => this.calculateTotals());
   };
 
   clearCart = (id) => {
