@@ -20,7 +20,7 @@ class Cart extends Component {
                   <Title name="your" title="cart"/>
                   <CartColumns/>
                   <CartList cart={cart} context={context}/>
-                  <CartTotals context={context}/>
+                  <CartTotals context={context} history={this.props.history}/>
                 </div>
               )
             } else {
